@@ -20,7 +20,7 @@ Durante los picos de tráfico, la aplicación mostraba **lentitud y alto consumo
 
 ✅ **Resultado final:**
 - Escalado automático funcional (de 3 a 10 réplicas)  
-- CPU promedio por pod: de **250 m → 120 m**  
+- CPU promedio por pod: de **200 m → 120 m**  
 - Latencia reducida y mayor estabilidad  
 
 ---
@@ -41,7 +41,7 @@ Durante los picos de tráfico, la aplicación mostraba **lentitud y alto consumo
 
 **Síntomas observados:**
 - Tiempos de respuesta lentos bajo carga.
-- Uso de CPU > 250 m en cada pod.
+- Uso de CPU > 200 m en cada pod.
 - No existía escalado automático.
 - Solo 3 réplicas estáticas definidas.
 
