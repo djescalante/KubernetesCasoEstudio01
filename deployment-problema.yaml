@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-web-problema
+  namespace: escalabilidad-lab
+spec:
+  replicas: 3  # Solo 3 réplicas fijas
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+        version: v1
+    spec:
+      containers:
+      - name: nginx-app
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        # SIN RECURSOS DEFINIDOS - PROBLEMA CRÍTICO
+        # No hay requests ni limits, por eso HPA no funciona
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "echo 'App iniciada' > /usr/share/nginx/html/index.html"]

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-web-solucion
+  namespace: escalabilidad-lab
+spec:
+  replicas: 3  # Réplicas iniciales
+  selector:
+    matchLabels:
+      app: web-app-solucion
+  template:
+    metadata:
+      labels:
+        app: web-app-solucion
+        version: v1
+    spec:
+      containers:
+      - name: nginx-app
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        # CRÍTICO: Definir recursos para que HPA funcione
+        resources:
+          requests:
+            cpu: 50m          # Mínimo CPU necesario
+            memory: 30Mi      # Mínimo memoria
+          limits:
+            cpu: 100m          # Máximo CPU permitido
+            memory: 64Mi      # Máximo memoria
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "echo 'App iniciada' > /usr/share/nginx/html/index.html"]

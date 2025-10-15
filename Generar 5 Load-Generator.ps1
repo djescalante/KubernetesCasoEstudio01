@@ -1,0 +1,1 @@
+kubectl delete pod -n escalabilidad-lab load-generator-1,load-generator-2,load-generator-3,load-generator-4,load-generator-5,load-generator-6

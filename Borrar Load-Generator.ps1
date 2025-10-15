@@ -1,0 +1,1 @@
+kubectl get pods -n escalabilidad-lab --no-headers | Where-Object { $_ -match "load-generator-" } | ForEach-Object { $podName = ($_ -split '\s+')[0]; kubectl delete pod -n escalabilidad-lab $podName }
